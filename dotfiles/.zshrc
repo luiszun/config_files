@@ -178,10 +178,6 @@ bindkey "${terminfo[kend]}"  end-of-line
 bindkey "^[[F"               end-of-line
 bindkey "${terminfo[kich1]}" overwrite-mode
 bindkey "${terminfo[kdch1]}" delete-char
-bindkey "${terminfo[kcuu1]}" history-substring-search-up
-bindkey "^[[A"               history-substring-search-up
-bindkey "${terminfo[kcud1]}" history-substring-search-down
-bindkey "^[[B"               history-substring-search-down
 bindkey "${terminfo[kcub1]}" backward-char
 bindkey "${terminfo[kcuf1]}" forward-char
 bindkey "${terminfo[kpp]}"   up-line-or-history
