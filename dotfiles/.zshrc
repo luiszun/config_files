@@ -1,5 +1,4 @@
 # vim: set filetype=zsh foldmethod=marker
-
 # path settings
 typeset -a path_entries
 path_entries+=/usr/local/bin
@@ -42,6 +41,8 @@ SAVEHIST=15000
 
 # environment
 export EDITOR='vim'
+
+bindkey -e
 #export VISUAL=$EDITOR
 #export PAGER=less
 #export LESS='-i'
@@ -116,7 +117,8 @@ alias rd="rmdir"
 # functions
 fpath=(~/.zsh/functions $fpath)
 
-
+#non-github exports
+source ~/.private_exports
 # zle
 # export WORDCHARS=${WORDCHARS//[\/]/} # remove / to that backward/forward-word doesn't jump over an entire path in one go
 # this puts the terminal in application mode that $terminfo is valid
