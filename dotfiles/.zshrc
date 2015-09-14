@@ -161,6 +161,9 @@ case $(hostname -s) in
     luiszun-desktop)
         host_prompt='%{$fg[cyan]%}luiszun-d'
         ;;
+    sancho-lap)
+         host_prompt='%{$fg[cyan]%}sancho-lap'
+        ;;
 esac
 
 return_status='%{$fg[white]%}%(?..(%?%))%{$reset_color%}'
