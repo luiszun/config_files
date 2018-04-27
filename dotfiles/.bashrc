@@ -110,7 +110,7 @@ function fal () {
 }
 
 function gal () {
-  grep -R $1 $2 *
+  grep -R -I $1 $2 *
 }
 
 alias ..="cd .."
