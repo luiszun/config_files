@@ -113,6 +113,10 @@ function gal () {
   grep -R -I $1 $2 *
 }
 
+function gil () {
+  grep -R -I -i $1 $2 *
+}
+
 alias ..="cd .."
 alias ...="cd ../.."
 alias ...="cd ../../.."
