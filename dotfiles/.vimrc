@@ -5,4 +5,3 @@
 :set ic
 :set smartcase
 :set hlsearch
-execute pathogen#infect()
