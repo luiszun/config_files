@@ -2,4 +2,4 @@
 mkdir -p ~/.vim/colors
 cd ~/.vim/colors
 curl -O https://raw.githubusercontent.com/nanotech/jellybeans.vim/master/colors/jellybeans.vim
-curl -O https://raw.githubusercontent.com/NLKNguyen/papercolor-theme/master/colors/PaperColor.vim
+curl -O https://raw.githubusercontent.com/NLKNguyen/papercolor-theme/tree/master/colors/PaperColor.vim
