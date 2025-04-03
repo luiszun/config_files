@@ -1,191 +1,105 @@
-# vim: set filetype=zsh foldmethod=marker
-# path settings
-typeset -a path_entries
-path_entries+=/usr/local/bin
-path_entries+=/usr/local/sbin
-path_entries+=/usr/bin
-path_entries+=/bin
-path_entries+=/usr/sbin
-path_entries+=/sbin
-path_entries+=/apollo/env/SDETools
-path_entries+=/apollo/env/envImprovement
-path_entries+=/opt/rh/devtoolset-2/root/usr/bin
-path_entries+=/opt/rh/devtoolset-3/root/usr/bin
-path_entries+=/usr/local/python3/bin
-path_entries+=$HOME/.bin
-path_entries+=$HOME/.rvm/bin
+# If you come from bash you might have to change your $PATH.
+export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
-for path_entry in $path_entries; do
-    if [[ ${path[(i)$path_entry]} -gt ${#path} ]] && [[ -e $path_entry ]]; then
-        path=($path_entry $path)
-    fi
-done
+# Path to your Oh My Zsh installation.
+export ZSH="$HOME/.oh-my-zsh"
 
-[[ -e /usr/local/opt/coreutils/libexec/gnubin ]] && path=(/usr/local/opt/coreutils/libexec/gnubin $path)
-[[ -e /usr/local/opt/coreutils/libexec/gnuman ]] && MANPATH=/usr/local/opt/coreutils/libexec/gnuman:$MANPATH
-[[ -e $HOME/.rvm/scripts/rvm ]] && source $HOME/.rvm/scripts/rvm
+# Set name of the theme to load --- if set to "random", it will
+# load a random theme each time Oh My Zsh is loaded, in which case,
+# to know which specific one was loaded, run: echo $RANDOM_THEME
+# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+ZSH_THEME="jonathan"
+#ZSH_THEME="random"
 
-# history
-setopt append_history
-setopt extended_history
-setopt hist_expire_dups_first
-setopt hist_ignore_all_dups
-setopt hist_ignore_dups
-setopt hist_ignore_space
-setopt hist_verify
-setopt inc_append_history
-unsetopt share_history
-HISTFILE=~/.history
-HISTSIZE=15000
-SAVEHIST=15000
+# Set list of themes to pick from when loading at random
+# Setting this variable when ZSH_THEME=random will cause zsh to load
+# a theme from this variable instead of looking in $ZSH/themes/
+# If set to an empty array, this variable will have no effect.
+#ZSH_THEME_RANDOM_CANDIDATES=( "eastwood" "pygmalion" "simple" "lukerandall" "godzilla" "kphoen" "minimal" "apple" "jonathan" "gnzh" "nanotech" "agnoster" "miloshadzic" )
 
-# environment
-export EDITOR='vim'
+# Uncomment the following line to use case-sensitive completion.
+# CASE_SENSITIVE="true"
 
-bindkey -e
-#export VISUAL=$EDITOR
-#export PAGER=less
-#export LESS='-i'
-unsetopt beep
-#KEYTIMEOUT=1 #fast vi esc timeout
+# Uncomment the following line to use hyphen-insensitive completion.
+# Case-sensitive completion must be off. _ and - will be interchangeable.
+# HYPHEN_INSENSITIVE="true"
 
+# Uncomment one of the following lines to change the auto-update behavior
+# zstyle ':omz:update' mode disabled  # disable automatic updates
+# zstyle ':omz:update' mode auto      # update automatically without asking
+zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 
-# completion
-autoload -Uz compinit && compinit
-setopt complete_aliases
-setopt extended_glob
-unsetopt nomatch
-setopt autocd
-#setopt correct #correct commands but not arguments
-#setopt correct_all #correct commands and arguments
-setopt rm_star_silent
-#setopt auto_name_dirs
-#setopt auto_pushd
-#setopt pushd_ignore_dups
+# Uncomment the following line to change how often to auto-update (in days).
+zstyle ':omz:update' frequency 13
 
-zstyle ':completion:*' use-cache on
-zstyle ':completion:*' cache-path ~/.zsh/cache
-zstyle ':completion:*' auto-description 'specify: %d'
-zstyle ':completion:*' completer _expand _complete _correct _approximate
-zstyle ':completion:*' verbose yes
-zstyle ':completion:*:descriptions' format '%B%d%b'
-zstyle ':completion:*:messages' format '%d'
-zstyle ':completion:*:warnings' format 'No matches for: %d'
-zstyle ':completion:*' group-name ''
-zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
-zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=* l:|=*'
-zstyle ':completion:*' menu select=2
-#zstyle ':completion:*' menu select=long
-zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
-zstyle ':completion:*' users dma root
-zstyle ':completion:*' use-compctl false
-zstyle ':completion:*' verbose true
-zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
-zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
-zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
+# Uncomment the following line if pasting URLs and other text is messed up.
+# DISABLE_MAGIC_FUNCTIONS="true"
 
+# Uncomment the following line to disable colors in ls.
+# DISABLE_LS_COLORS="true"
 
-# plugins
-source ~/.zsh/plugins/git.zsh
+# Uncomment the following line to disable auto-setting terminal title.
+# DISABLE_AUTO_TITLE="true"
 
+# Uncomment the following line to enable command auto-correction.
+ENABLE_CORRECTION="true"
 
-# aliases
-alias ls="ls --color=auto"
-alias ll="ls -lhHGF"
-alias l="ls -AlhF"
-alias sl=ls
+# Uncomment the following line to display red dots whilst waiting for completion.
+# You can also set it to another string to have that shown instead of the default red dots.
+# e.g. COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
+# Caution: this setting can cause issues with multiline prompts in zsh < 5.7.1 (see #5765)
+COMPLETION_WAITING_DOTS="true"
 
-alias grep="grep --color=auto"
-alias g="grep"
+# Uncomment the following line if you want to disable marking untracked files
+# under VCS as dirty. This makes repository status check for large repositories
+# much, much faster.
+# DISABLE_UNTRACKED_FILES_DIRTY="true"
 
-alias cd/="cd /"
-alias cd..="cd .."
-alias cd...="cd ../.."
-alias cd....="cd ../../.."
-alias cd.....="cd ../../../.."
-alias ..="cd .."
-alias ...="cd ../.."
-alias ....="cd ../../.."
-alias .....="cd ../../../.."
+# Uncomment the following line if you want to change the command execution time
+# stamp shown in the history command output.
+# You can set one of the optional three formats:
+# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# or set a custom format using the strftime function format specifications,
+# see 'man strftime' for details.
+# HIST_STAMPS="mm/dd/yyyy"
 
-alias _="sudo"
+# Would you like to use another custom folder than $ZSH/custom?
+# ZSH_CUSTOM=/path/to/new-custom-folder
 
-alias md="mkdir -p"
-alias rd="rmdir"
+# Which plugins would you like to load?
+# Standard plugins can be found in $ZSH/plugins/
+# Custom plugins may be added to $ZSH_CUSTOM/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
+plugins=(git)
 
-# functions
-fpath=(~/.zsh/functions $fpath)
+source $ZSH/oh-my-zsh.sh
 
-#non-github exports
-source ~/.private_exports
-# zle
-# export WORDCHARS=${WORDCHARS//[\/]/} # remove / to that backward/forward-word doesn't jump over an entire path in one go
-# this puts the terminal in application mode that $terminfo is valid
-#function zle-line-init() {
-#  [[ -n ${terminfo[smkx]} ]] && printf '%s' ${terminfo[smkx]}
-#  #echoti smkx
-#}
-#function zle-line-finish() {
-#  [[ -n ${terminfo[rmkx]} ]] && printf '%s' ${terminfo[rmkx]}
-#  #echoti rmkx
-#}
-#zle -N zle-line-init
-#zle -N zle-line-finish
-#autoload -U edit-command-line
-#zle -N edit-command-line
-#bindkey '\C-x\C-e' edit-command-line
+# User configuration
 
+# export MANPATH="/usr/local/man:$MANPATH"
 
+# You may need to manually set your language environment
+# export LANG=en_US.UTF-8
 
+# Preferred editor for local and remote sessions
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='vim'
+else
+  export EDITOR='nvim'
+fi
 
+# Compilation flags
+# export ARCHFLAGS="-arch $(uname -m)"
 
-
-
-# prompt & colors
-# test prompt strings with print -rP '<prompt-string>'
-#autoload -Uz vcs_info
-#zstyle ':vcs_info:*' enable git
-#zstyle ':vcs_info:*' check-for-changes true
-#zstyle ':vcs_info:git*' formats "%{$fg[blue]%}(%b)%{$reset_color%}%m%u%c%{$reset_color%}"
-#zstyle ':vcs_info:git*' actionformats "%{$fg[blue]%}(%b)%{$fg[red]%}%a%{$reset_color%}%m%u%c%{$reset_color%}"
-#zstyle ':vcs_info:git*' unstagedstr "%{$fg[yellow]%}⚡%{$reset_color%}"
-#zstyle ':vcs_info:git*' stagedstr "%{$fg[magenta]%}↕}%{$reset_color%}"
-autoload -Uz colors && colors # enable color, fg & bg variables to easily print colors
-setopt prompt_subst # enable string substitution in prompt variables
-[[ $TERM == "xterm" ]] && export TERM="xterm-256color"
-[[ -e ~/.dotfiles/misc/dircolors ]] && eval $(dircolors ~/.dotfiles/misc/dircolors) # ls colors
-
-# define left & right prompts
-case $(hostname -s) in
-    luiszun-desktop)
-        host_prompt='%{$fg[cyan]%}luiszun-d'
-        ;;
-    sancho-lap)
-         host_prompt='%{$fg[cyan]%}sancho-lap'
-        ;;
-esac
-
-return_status='%{$fg[white]%}%(?..(%?%))%{$reset_color%}'
-PS1="%{$reset_color%}${host_prompt}%{$fg[red]%}#%{$reset_color%} "
-RPS1="%{$reset_color%}%{$fg[white]%}%(?..(%?%))%{$reset_color%}\$(git_prompt_info)%{$reset_color%} %{$fg[cyan]%}%3~%{$fg_bold[red]%} \$(date '+%H:%M:%S')%{$reset_color%}"
-PS4='+%N:%i:%_>' # make debugging easier by adding %_ (context)
-
-
-
-
-
-zmodload zsh/termcap
-zmodload zsh/terminfo
-bindkey "${terminfo[khome]}" beginning-of-line
-bindkey "^[[H"               beginning-of-line
-bindkey "${terminfo[kend]}"  end-of-line
-bindkey "^[[F"               end-of-line
-bindkey "${terminfo[kich1]}" overwrite-mode
-bindkey "${terminfo[kdch1]}" delete-char
-bindkey "${terminfo[kcub1]}" backward-char
-bindkey "${terminfo[kcuf1]}" forward-char
-bindkey "${terminfo[kpp]}"   up-line-or-history
-bindkey "${terminfo[knp]}"   down-line-or-history
-bindkey ' ' magic-space
-
+# Set personal aliases, overriding those provided by Oh My Zsh libs,
+# plugins, and themes. Aliases can be placed here, though Oh My Zsh
+# users are encouraged to define aliases within a top-level file in
+# the $ZSH_CUSTOM folder, with .zsh extension. Examples:
+# - $ZSH_CUSTOM/aliases.zsh
+# - $ZSH_CUSTOM/macos.zsh
+# For a full list of active aliases, run `alias`.
+#
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"

@@ -1,5 +1,17 @@
 #!/bin/bash
+sudo apt install -y curl
+mkdir -p ~/.config/nvim
+ln -s "${PWD}/../dotfiles/.config/nvim/init.vim" "${HOME}/.config/nvim/"
+
+rm ~/.bashrc
+ln -s "${PWD}/../dotfiles/.bashrc" "${HOME}/.bashrc"
+ln -s "${PWD}/../dotfiles/.zshrc" "${HOME}/.zshrc"
+
 mkdir -p ~/.vim/colors
 cd ~/.vim/colors
 curl -O https://raw.githubusercontent.com/nanotech/jellybeans.vim/master/colors/jellybeans.vim
 curl -O https://raw.githubusercontent.com/NLKNguyen/papercolor-theme/master/colors/PaperColor.vim
+
+sudo apt update
+sudo apt install -y gnome-tweaks
+sudo apt install -y gnome-shell-extensions
