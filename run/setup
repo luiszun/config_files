@@ -31,3 +31,6 @@ sudo systemctl daemon-reexec
 sudo systemctl enable --now hydroxide
 echo "Now do $ hydroxide auth <username>"
 echo "Remember all plain. IMAP 1143 SMTP 1025"
+
+sudo apt update && sudo apt install -y clang build-essential cmake clang-format
+sudo apt install -y ninja-build gettext cmake curl build-essential git
