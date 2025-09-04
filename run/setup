@@ -15,3 +15,19 @@ curl -O https://raw.githubusercontent.com/NLKNguyen/papercolor-theme/master/colo
 sudo apt update
 sudo apt install -y gnome-tweaks
 sudo apt install -y gnome-shell-extensions
+sudo apt install -y gnome-shell-extension-manager
+
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+# hydroxide, requires for this to live in ~/git/repo
+sudo apt install golang
+cd ~/git
+git clone https://github.com/emersion/hydroxide.git
+cd hydroxide
+go build ./cmd/hydroxide
+sudo cp ./hydroxide /usr/local/bin
+sudo cp ~/git/config_files/daemon/hydroxide.service /etc/systemd/system
+sudo systemctl daemon-reexec
+sudo systemctl enable --now hydroxide
+echo "Now do $ hydroxide auth <username>"
+echo "Remember all plain. IMAP 1143 SMTP 1025"

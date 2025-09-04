@@ -1,0 +1,13 @@
+# /etc/systemd/system/hydroxide.service
+[Unit]
+Description=Hydroxide ProtonMail Bridge
+After=network.target
+
+[Service]
+ExecStart=/usr/local/bin/hydroxide serve
+Restart=on-failure
+User=luiszun
+Environment=HYDROXIDE_DATA_DIR=/home/luiszun/.config/hydroxide
+WorkingDirectory=/home/luiszun
+RestartSec=5s
+
