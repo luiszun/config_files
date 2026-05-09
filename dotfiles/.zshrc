@@ -8,7 +8,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # load a random theme each time Oh My Zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="jonathan"
+ZSH_THEME="bira"
 #ZSH_THEME="random"
 
 # Set list of themes to pick from when loading at random
@@ -105,3 +105,10 @@ fi
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #
 alias vim="nvim"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+export PICO_SDK_PATH="$HOME/git/pico-sdk"
+export WITZIHOME="$HOME/Nextcloud/Archivero/Witzi"
+alias clangfmt-all='find . \( -name "*.c" -o -name "*.h" -o -name "*.cpp" -o -name "*.hpp" -o -name "*.cc" -o -name "*.cxx" -o -name "*.hh" \) -not -path "./.git/*" -exec clang-format -i {} +'
